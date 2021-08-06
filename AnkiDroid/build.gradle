@@ -1,6 +1,6 @@
 plugins {
  // Gradle plugin portal 
- id 'com.github.triplet.play' version '3.6.0'
+ id 'com.github.triplet.play'
 }
 
 apply plugin: 'com.android.application'
@@ -241,38 +241,38 @@ dependencies {
     // Can possibly remove if upstream PR merges https://github.com/JakeWharton/timber/pull/398
     configurations.all {
         resolutionStrategy {
-            force 'org.jetbrains:annotations:21.0.1'
-            force 'androidx.test:core:1.4.0' // Pending fix here: https://issuetracker.google.com/issues/189353863
+            force 'org.jetbrains:annotations:_'
+            force AndroidX.test.core // Pending fix here: https://issuetracker.google.com/issues/189353863
         }
     }
 
     lintChecks project(":lint-rules")
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
-    compileOnly 'org.jetbrains:annotations:21.0.1'
-    compileOnly "com.google.auto.service:auto-service-annotations:1.0"
-    annotationProcessor "com.google.auto.service:auto-service:1.0"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:_'
+    compileOnly 'org.jetbrains:annotations:_'
+    compileOnly "com.google.auto.service:auto-service-annotations:_"
+    annotationProcessor "com.google.auto.service:auto-service:_"
 
-    implementation 'androidx.activity:activity-ktx:1.3.1'
-    implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.browser:browser:1.3.0'
-    implementation "androidx.core:core-ktx:1.6.0"
-    implementation 'androidx.exifinterface:exifinterface:1.3.3'
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    implementation "androidx.preference:preference-ktx:1.1.1"
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.sqlite:sqlite-framework:2.1.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation AndroidX.activityKtx
+    implementation AndroidX.annotation
+    implementation AndroidX.appCompat
+    implementation AndroidX.browser
+    implementation AndroidX.core.ktx
+    implementation AndroidX.exifInterface
+    implementation AndroidX.fragmentKtx
+    implementation AndroidX.localBroadcastManager
+    implementation AndroidX.preferenceKtx
+    implementation AndroidX.recyclerView
+    implementation AndroidX.sqliteFramework
+    implementation AndroidX.swipeRefreshLayout
+    implementation AndroidX.viewPager2
     // noinspection GradleDependency - pinned at 1.12 until API26 minSdkVersion (File.toPath usage)
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    implementation 'androidx.webkit:webkit:1.4.0'
+    implementation AndroidX.constraintLayout
+    implementation AndroidX.webkit
     // Note: the design support library can be quite buggy, so test everything thoroughly before updating it
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
-    implementation 'com.github.CanHub:Android-Image-Cropper:3.1.3'
+    implementation Google.android.material
+    implementation 'com.fasterxml.jackson.core:jackson-databind:_'
+    implementation 'com.github.CanHub:Android-Image-Cropper:_'
 
 
     // == Rust conversion (from Anki-Android-Backend on GitHub) ==
@@ -280,54 +280,54 @@ dependencies {
     // build with ./gradlew rsdroid:assembleRelease
     // In my experience, using `files()` currently requires a reindex operation, which is slow.
     // implementation files("C:\\GitHub\\Rust-Test\\rsdroid\\build\\outputs\\aar\\rsdroid-release.aar")
-    implementation 'com.google.protobuf:protobuf-java:3.17.3' // This is required when loading from a file
-    implementation "io.github.david-allison-1:anki-android-backend:$backendVersion"
+    implementation 'com.google.protobuf:protobuf-java:_' // This is required when loading from a file
+    implementation "io.github.david-allison-1:anki-android-backend:_"
     // build with ./gradlew rsdroid-testing:assembleRelease
     // RobolectricTest.java: replace RustBackendLoader.init(); with RustBackendLoader.loadRsdroid(path);
     // A path for a testing library is typically under rsdroid-testing/assets
-    testImplementation "io.github.david-allison-1:anki-android-backend-testing:$backendVersion"
+    testImplementation "io.github.david-allison-1:anki-android-backend-testing:_"
 
     // May need a resolution strategy for support libs to our versions
-    implementation'ch.acra:acra-http:5.7.0'
-    implementation'ch.acra:acra-dialog:5.7.0'
-    implementation'ch.acra:acra-toast:5.7.0'
-    implementation'ch.acra:acra-limiter:5.7.0'
+    implementation'ch.acra:acra-http:_'
+    implementation'ch.acra:acra-dialog:_'
+    implementation'ch.acra:acra-toast:_'
+    implementation'ch.acra:acra-limiter:_'
 
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.afollestad.material-dialogs:core:_'
+    implementation 'com.getbase:floatingactionbutton:_'
     // io.github.java-diff-utils:java-diff-utils is the natural successor here, but requires API24, #7091
-    implementation 'org.bitbucket.cowwoc:diff-match-patch:1.2'
+    implementation 'org.bitbucket.cowwoc:diff-match-patch:_'
     // noinspection GradleDependency - commons-compress 1.12 - later versions use `File.toPath`; API26 can remove?
-    implementation 'org.apache.commons:commons-compress:1.12' // #6419 - handle >2GB apkg files
-    implementation 'org.apache.commons:commons-collections4:4.4' // SetUniqueList
-    implementation 'net.mikehardy:google-analytics-java7:2.0.13'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    implementation 'com.arcao:slf4j-timber:3.1'
+    implementation 'org.apache.commons:commons-compress:_' // #6419 - handle >2GB apkg files
+    implementation 'org.apache.commons:commons-collections4:_' // SetUniqueList
+    implementation 'net.mikehardy:google-analytics-java7:_'
+    implementation Square.okHttp3.okHttp
+    implementation 'com.arcao:slf4j-timber:_'
     // TODO: Re-enable Timber inspections in lint-release.xml after https://github.com/JakeWharton/timber/issues/408
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'org.jsoup:jsoup:1.14.1'
-    implementation "com.github.zafarkhaja:java-semver:0.9.0" // For AnkiDroid JS API Versioning
-    implementation 'com.drakeet.drawer:drawer:1.0.3'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'uk.co.samuelwall:material-tap-target-prompt:3.2.0'
+    implementation JakeWharton.timber
+    implementation 'org.jsoup:jsoup:_'
+    implementation "com.github.zafarkhaja:java-semver:_" // For AnkiDroid JS API Versioning
+    implementation 'com.drakeet.drawer:drawer:_'
+    implementation Kotlin.stdlib
+    implementation Kotlin.stdlib.jdk7
+    implementation 'uk.co.samuelwall:material-tap-target-prompt:_'
     api project(":api")
 
-    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
-    testImplementation 'org.mockito:mockito-inline:3.11.2'
-    testImplementation "org.mockito.kotlin:mockito-kotlin:3.2.0"
-    testImplementation 'org.hamcrest:hamcrest-all:1.3'
-    testImplementation 'net.lachlanmckee:timber-junit-rule:1.0.1'
-    testImplementation "org.robolectric:robolectric:4.6.1"
-    testImplementation 'androidx.test:core:1.4.0'
-    testImplementation 'androidx.test.ext:junit:1.1.3'
-    testImplementation "org.jetbrains.kotlin:kotlin-reflect:1.5.21"
+    testImplementation 'org.junit.vintage:junit-vintage-engine:_'
+    testImplementation Testing.mockito.inline
+    testImplementation "org.mockito.kotlin:mockito-kotlin:_"
+    testImplementation 'org.hamcrest:hamcrest-all:_'
+    testImplementation 'net.lachlanmckee:timber-junit-rule:_'
+    testImplementation Testing.robolectric
+    testImplementation AndroidX.test.core
+    testImplementation AndroidX.test.ext.junit
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:_"
     // debugImplementation required vs testImplementation: https://issuetracker.google.com/issues/128612536
-    debugImplementation 'androidx.fragment:fragment-testing:1.3.6'
+    debugImplementation AndroidX.fragmentTesting
 
     // May need a resolution strategy for support libs to our versions
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation AndroidX.test.espresso.core
+    androidTestImplementation AndroidX.test.espresso.contrib
+    androidTestImplementation AndroidX.test.ext.junit
+    androidTestImplementation AndroidX.test.rules
 }

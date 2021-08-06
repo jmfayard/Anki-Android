@@ -14,13 +14,13 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0'
+        classpath 'com.android.tools.build:gradle:_'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath "app.brant:amazonappstorepublisher:0.1.0"
+        classpath "app.brant:amazonappstorepublisher:_"
 
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.1.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:_"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:_"
     }
 }
 
